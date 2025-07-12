@@ -739,6 +739,47 @@
     </div>
 
     <script>
+        // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileToggle = document.createElement('div');
+    mobileToggle.className = 'mobile-toggle';
+    mobileToggle.innerHTML = '&#9776;';
+    mobileToggle.style.cssText = `
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #333;
+    `;
+
+    document.querySelector('nav').appendChild(mobileToggle);
+
+    mobileToggle.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '70px';
+      navLinks.style.right = '20px';
+      navLinks.style.backgroundColor = 'white';
+      navLinks.style.padding = '1rem';
+      navLinks.style.border = '1px solid #eee';
+      navLinks.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+      navLinks.style.borderRadius = '10px';
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @media (max-width: 768px) {
+        .mobile-toggle {
+          display: block;
+        }
+        .nav-links {
+          display: none !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  });
         // Sample product data
         const products = [
             {
